@@ -3,8 +3,8 @@
     public class Wheel
     {
         // Тиск у шині вимірюється в барах.
-        public const double MinPressure = 1.5;   // нижче цього шина вважається спущеною
-        public const double MaxPressure = 3.0;   // вище накачати не можна
+        public const double MinPressure = 1.5;  // нижче цього шина вважається спущеною
+        public const double MaxPressure = 3.0;  // вище накачати не можна
 
         public int Radius { get; set; }
 
@@ -17,7 +17,7 @@
         public Wheel(int radius)
         {
             Radius = radius;
-            Pressure = 2.2;                      // нове колесо накачане до норми
+            Pressure = 2.2;                     // нове колесо накачане до норми
         }
 
         // Уже реалізовано: імітація проколу, тиск падає до нуля.
@@ -26,12 +26,22 @@
             Pressure = 0;
         }
 
-        // TODO: Завдання 2. Підкачування шини на bar бар.
+        // Завдання 2. Підкачування шини на bar бар.
         // Тиск зростає на bar, але не може перевищити MaxPressure.
         // Якщо bar <= 0, нічого не змінюйте.
         public void Inflate(double bar)
         {
+            if (bar <= 0)
+            {
+                return;
+            }
 
+            Pressure += bar;
+
+            if (Pressure > MaxPressure)
+            {
+                Pressure = MaxPressure;
+            }
         }
     }
 }
